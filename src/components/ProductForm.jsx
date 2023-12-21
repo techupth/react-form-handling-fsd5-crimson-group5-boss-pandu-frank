@@ -1,25 +1,24 @@
 import { useState } from "react";
 
 function ProductForm() {
-  const [userName, setUserName] = useState(""); //input name
-  const [userImg, setUserImg] = useState(""); //input url
-  const [userPrice, setUserPrice] = useState(Number);
-  const [userDescription, setUserDescription] = useState("");
+  const [name, setName] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
 
-  const handleCreate = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      `
-      name: ${userName}, 
-      price: ${userPrice}, 
-      image: ${userImg}, 
-      description: ${userDescription}
-      `
-    );
+    const formData = {
+      name: name,
+      imgUrl: imgUrl,
+      price: price,
+      description: description,
+    };
+    alert(JSON.stringify(formData));
   };
 
   return (
-    <form className="post-form" onSubmit={handleCreate}>
+    <form onSubmit={handleSubmit} className="post-form">
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -27,12 +26,12 @@ function ProductForm() {
           <input
             id="name"
             name="name"
-            value={userName}
             type="text"
             placeholder="Enter name here"
             onChange={(event) => {
-              setUserName(event.target.value);
+              setName(event.target.value);
             }}
+            value={name}
           />
         </label>
       </div>
@@ -42,12 +41,12 @@ function ProductForm() {
           <input
             id="image"
             name="image"
-            value={userImg}
             type="text"
             placeholder="Enter image url here"
             onChange={(event) => {
-              setUserImg(event.target.value);
+              setImgUrl(event.target.value);
             }}
+            value={imgUrl}
           />
         </label>
       </div>
@@ -57,12 +56,12 @@ function ProductForm() {
           <input
             id="price"
             name="price"
-            value={userPrice}
             type="number"
             placeholder="Enter price here"
             onChange={(event) => {
-              setUserPrice(event.target.value);
+              setPrice(event.target.value);
             }}
+            value={price}
           />
         </label>
       </div>
@@ -72,14 +71,14 @@ function ProductForm() {
           <textarea
             id="description"
             name="description"
-            value={userDescription}
             type="text"
             placeholder="Enter description here"
             onChange={(event) => {
-              setUserDescription(event.target.value);
+              setDescription(event.target.value);
             }}
             rows={4}
             cols={30}
+            value={description}
           />
         </label>
       </div>
